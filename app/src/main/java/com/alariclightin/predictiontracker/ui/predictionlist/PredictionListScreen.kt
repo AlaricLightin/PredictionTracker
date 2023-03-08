@@ -53,8 +53,7 @@ fun PredictionListScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = navigateToPredictionEntry,
-                modifier = Modifier.navigationBarsPadding(),
-                containerColor = MaterialTheme.colorScheme.primary
+                modifier = Modifier.navigationBarsPadding()
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
