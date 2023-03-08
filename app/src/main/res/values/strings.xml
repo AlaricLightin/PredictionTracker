@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Prediction Tracker</string>
-    <string name="no_predictions_description">There are no prediction yet.</string>
-    <string name="predictionList">Prediction List</string>
+    <string name="app_name">Predictions Tracker</string>
+    <string name="no_predictions_description">There are no predictions yet.</string>
+    <string name="predictionList">Predictions List</string>
     <string name="add_prediction">Add prediction</string>
     <string name="save">Save</string>
     <string name="question">Question</string>
-    <string name="probability">Probabilty</string>
+    <string name="probability">Probability</string>
     <string name="prediction_entry_title">Add prediction</string>
     <string name="back_button">Back</string>
     <string name="correct_result">Result: correct</string>
