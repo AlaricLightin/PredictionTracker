@@ -1,9 +1,11 @@
 package com.alariclightin.predictiontracker.ui.predictionlist
 
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.test.filters.SdkSuppress
 import com.alariclightin.predictiontracker.R
 import com.alariclightin.predictiontracker.data.Prediction
 import com.alariclightin.predictiontracker.ui.theme.PredictionTrackerTheme
@@ -17,6 +19,7 @@ import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import java.time.OffsetDateTime
 
+@SdkSuppress(minSdkVersion = Build.VERSION_CODES.P)
 class PredictionListScreenTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
@@ -25,11 +28,6 @@ class PredictionListScreenTest {
     val initRule: MockitoRule = MockitoJUnit.rule()
 
     private lateinit var viewModel: PredictionListViewModel
-
-//    @Before
-//    fun setup() {
-//
-//    }
 
     @Test
     fun verifyEmptyContent() {
