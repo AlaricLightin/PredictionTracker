@@ -85,16 +85,27 @@ interface ColorsContainer {
     operator fun get(index: CardColorType): Color
 }
 
-val ColorScheme.cardColors: ColorsContainer
+val ColorScheme.cardBackgroundColors: ColorsContainer
     @Composable
     get() = object : ColorsContainer {
         @Composable
-        override fun get(index: CardColorType): Color = when(index) {
+        override fun get(index: CardColorType): Color = when (index) {
             // TODO: Take into account the dark theme
             CardColorType.RightAnswer -> light_RightAnswerColorContainer
             CardColorType.WrongAnswer -> light_WrongAnswerColorContainer
             CardColorType.Expired -> surfaceVariant
             CardColorType.Normal -> background
+        }
+    }
+
+val ColorScheme.scoreTextColors: ColorsContainer
+    @Composable
+    get() = object : ColorsContainer {
+        @Composable
+        override fun get(index: CardColorType): Color = when (index) {
+            CardColorType.RightAnswer -> light_RightAnswerColor
+            CardColorType.WrongAnswer -> light_WrongAnswerColor
+            else -> onSurface
         }
     }
 

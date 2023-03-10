@@ -11,6 +11,7 @@ import androidx.compose.material3.CardDefaults.cardElevation
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.alariclightin.predictiontracker.PredictionTrackerTopAppBar
 import com.alariclightin.predictiontracker.R
 import com.alariclightin.predictiontracker.data.Prediction
+import com.alariclightin.predictiontracker.ui.TestTagConsts
 import com.alariclightin.predictiontracker.ui.navigation.NavigationDestination
 import com.alariclightin.predictiontracker.ui.prediction.*
 import com.alariclightin.predictiontracker.ui.theme.*
@@ -135,6 +137,8 @@ fun PredictionElement(
         var resolveDialogOpened by remember { mutableStateOf(false) }
         var deleteDialogOpened by remember { mutableStateOf(false) }
 
+        val colorType = prediction.getCardColorType()
+
         Card(
             modifier = modifier
                 .clickable { menuExpanded = true }
@@ -142,17 +146,19 @@ fun PredictionElement(
                 .padding(8.dp),
             elevation = cardElevation(defaultElevation = 2.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.cardColors[prediction.getCardColorType()]
+                containerColor = MaterialTheme.colorScheme.cardBackgroundColors[colorType]
             )
         ) {
             Row(
                 modifier = modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 8.dp)
+                    .padding(horizontal = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(
                     modifier = modifier
                         .fillMaxWidth()
+                        .weight(1f)
                         .padding(vertical = 8.dp)
                 ) {
                     Row {
@@ -171,11 +177,31 @@ fun PredictionElement(
                         Row {
                             Text(
                                 text = if (prediction.result) stringResource(R.string.correct_result)
-                                else stringResource(R.string.incorrect_result)
+                                else stringResource(R.string.incorrect_result),
+                                modifier = modifier
+                                    .testTag(TestTagConsts.PredictionResultText)
                             )
                         }
                     }
-                } // end Column
+                } // end Column with text
+
+                Spacer(modifier = modifier.width(8.dp))
+
+                Box(
+                    modifier = modifier
+                        .padding(vertical = 8.dp)
+                        .width(60.dp)
+                        .fillMaxHeight()
+                ) {
+                    if (prediction.result != null)
+                        Text(
+                            text = prediction.getScoreString(),
+                            color = MaterialTheme.colorScheme.scoreTextColors[colorType],
+                            modifier = modifier
+                                .align(Alignment.Center)
+                                .testTag(TestTagConsts.PredictionScoreText)
+                        )
+                } // end Box with score
             } // end Row
         } // end Card
 

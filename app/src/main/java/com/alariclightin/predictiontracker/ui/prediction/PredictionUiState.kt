@@ -2,6 +2,7 @@ package com.alariclightin.predictiontracker.ui.prediction
 
 import com.alariclightin.predictiontracker.data.Prediction
 import com.alariclightin.predictiontracker.ui.theme.CardColorType
+import java.text.DecimalFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
@@ -9,6 +10,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.time.format.FormatStyle
+import kotlin.math.log2
 
 data class PredictionUiState(
     val id: Int = 0,
@@ -81,6 +83,17 @@ fun Prediction.getRightness(): PredictionRightness? {
         result.xor(probability > 50) -> PredictionRightness.WRONG
         else -> PredictionRightness.RIGHT
     }
+}
+
+fun Prediction.getScoreString(): String {
+    if (result == null || probability == 50)
+        return ""
+
+    val score = if (result) log2(2 * probability.toDouble() / 100) * 10
+    else log2(2 * (100 - probability).toDouble() / 100) * 10
+
+    val decimalFormat = DecimalFormat("+0.0;-0.0")
+    return decimalFormat.format(score)
 }
 
 fun Prediction.getCardColorType(): CardColorType {
