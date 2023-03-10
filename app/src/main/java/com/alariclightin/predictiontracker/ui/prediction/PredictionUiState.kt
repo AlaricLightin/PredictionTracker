@@ -68,23 +68,6 @@ fun Prediction.datesString(formatString: String): String {
     )
 }
 
-enum class PredictionRightness{
-    WRONG,
-    NEUTRAL,
-    RIGHT
-}
-
-fun Prediction.getRightness(): PredictionRightness? {
-    if (result == null)
-        return null
-
-    return when {
-        probability == 50 -> PredictionRightness.NEUTRAL
-        result.xor(probability > 50) -> PredictionRightness.WRONG
-        else -> PredictionRightness.RIGHT
-    }
-}
-
 fun Prediction.getScoreString(): String {
     if (result == null || probability == 50)
         return ""
@@ -97,14 +80,16 @@ fun Prediction.getScoreString(): String {
 }
 
 fun Prediction.getCardColorType(): CardColorType {
-    val rightness = getRightness()
-    return when{
-        rightness == PredictionRightness.RIGHT ->
-            CardColorType.RightAnswer
-        rightness == PredictionRightness.WRONG ->
-            CardColorType.WrongAnswer
-        result == null && resolveDate < OffsetDateTime.now() ->
-            CardColorType.Expired
-        else -> CardColorType.Normal
+    if (result != null && probability != 50) {
+        return when {
+            result.xor(probability > 50) -> CardColorType.WrongAnswer
+            else -> CardColorType.RightAnswer
+        }
+    }
+    else if (result == null && resolveDate < OffsetDateTime.now()) {
+        return CardColorType.Expired
+    }
+    else {
+        return CardColorType.Normal
     }
 }

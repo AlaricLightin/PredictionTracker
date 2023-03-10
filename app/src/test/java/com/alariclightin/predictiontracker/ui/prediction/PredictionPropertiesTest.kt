@@ -14,32 +14,6 @@ class PredictionPropertiesTest {
 
     @Test
     @Parameters(value = [
-        "50, true, NEUTRAL",
-        "50, false, NEUTRAL",
-        "90, true, RIGHT",
-        "90, false, WRONG",
-        "10, false, RIGHT",
-        "10, true, WRONG",
-    ])
-    fun shouldGetPredictionRightness(
-        probability: Int,
-        predictionResult: Boolean,
-        expectedResult: PredictionRightness
-    ) {
-        val prediction = Prediction(
-            text = "Some prediction text",
-            probability = probability,
-            predictionDate = OffsetDateTime.now(),
-            resolveDate = OffsetDateTime.now(),
-            result = predictionResult
-        )
-
-        assertThat(prediction.getRightness())
-            .isEqualTo(expectedResult)
-    }
-
-    @Test
-    @Parameters(value = [
         "50, true, Normal",
         "50, false, Normal",
         "90, true, RightAnswer",
