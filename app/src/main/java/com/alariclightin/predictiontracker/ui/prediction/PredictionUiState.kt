@@ -80,16 +80,16 @@ fun Prediction.getScoreString(): String {
 }
 
 fun Prediction.getCardColorType(): CardColorType {
-    if (result != null && probability != 50) {
-        return when {
+    return if (result != null && probability != 50) {
+        when {
             result.xor(probability > 50) -> CardColorType.WrongAnswer
             else -> CardColorType.RightAnswer
         }
     }
     else if (result == null && resolveDate < OffsetDateTime.now()) {
-        return CardColorType.Expired
+        CardColorType.Expired
     }
     else {
-        return CardColorType.Normal
+        CardColorType.Normal
     }
 }
