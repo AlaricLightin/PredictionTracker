@@ -1,5 +1,6 @@
 package com.alariclightin.predictiontracker.ui.prediction
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,7 +16,7 @@ import com.alariclightin.predictiontracker.data.Prediction
 @Composable
 fun PredictionDialogBody(
     prediction: Prediction,
-    questionId: Int
+    @StringRes questionId: Int
 ) {
     Column {
         Row {

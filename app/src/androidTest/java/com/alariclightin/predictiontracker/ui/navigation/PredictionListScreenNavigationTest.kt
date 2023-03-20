@@ -3,13 +3,12 @@ package com.alariclightin.predictiontracker.ui.navigation
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.alariclightin.predictiontracker.MainActivity
 import com.alariclightin.predictiontracker.PredictionTrackerApp
 import com.alariclightin.predictiontracker.R
 import com.alariclightin.predictiontracker.ui.TestTagConsts
-import com.alariclightin.predictiontracker.ui.prediction.PredictionEntryDestination
-import com.alariclightin.predictiontracker.ui.predictionlist.PredictionListDestination
 import com.alariclightin.predictiontracker.ui.utils.assertNodeWithTestTagContainsTextEqualsToTextWithStringId
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -37,7 +36,7 @@ class PredictionListScreenNavigationTest {
     fun appNavHost_verifyStartDestination() {
         composeTestRule
             .assertNodeWithTestTagContainsTextEqualsToTextWithStringId(
-                TestTagConsts.TopAppBarText, PredictionListDestination.titleRes)
+                TestTagConsts.TopAppBarText, R.string.predictionList)
     }
 
     @Test
@@ -48,7 +47,23 @@ class PredictionListScreenNavigationTest {
 
         composeTestRule
             .assertNodeWithTestTagContainsTextEqualsToTextWithStringId(
-                TestTagConsts.TopAppBarText, PredictionEntryDestination.titleRes
+                TestTagConsts.TopAppBarText, R.string.prediction_entry_title
+            )
+    }
+
+    @Test
+    fun appNavHost_clickStatistics_navigatesToStatisticsScreen() {
+        composeTestRule.onNodeWithContentDescription(
+            composeTestRule.activity.getString(R.string.menu)
+        ).performClick()
+
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(R.string.statistics)
+        ).performClick()
+
+        composeTestRule
+            .assertNodeWithTestTagContainsTextEqualsToTextWithStringId(
+                TestTagConsts.TopAppBarText, R.string.statistics
             )
     }
 }

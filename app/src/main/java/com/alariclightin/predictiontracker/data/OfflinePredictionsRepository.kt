@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class OfflinePredictionsRepository @Inject constructor(
     private val predictionsDao: PredictionsDao
-) : PredictionsRepository {
+) : PredictionsRepository, PredictionStatisticsRepository {
 
     override fun getAllPredictionsStream(): Flow<List<Prediction>> =
         predictionsDao.getAllPredictions()
@@ -17,4 +17,7 @@ class OfflinePredictionsRepository @Inject constructor(
     override suspend fun delete(prediction: Prediction) = predictionsDao.delete(prediction)
 
     override suspend fun update(prediction: Prediction) = predictionsDao.update(prediction)
+
+    override fun getResultProbabilityList(): Flow<List<Int>> =
+        predictionsDao.getResultProbabilityList()
 }

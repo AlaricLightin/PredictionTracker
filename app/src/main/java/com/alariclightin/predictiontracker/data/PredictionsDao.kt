@@ -1,11 +1,6 @@
 package com.alariclightin.predictiontracker.data
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,4 +19,15 @@ interface PredictionsDao {
 
     @Query("SELECT * FROM predictions")
     fun getAllPredictions(): Flow<List<Prediction>>
+
+    @Query("""
+        SELECT
+            CASE result
+                WHEN 1 THEN probability
+                ELSE 100 - probability
+            END AS resultProbability
+        FROM predictions
+        WHERE result IS NOT NULL
+    """)
+    fun getResultProbabilityList(): Flow<List<Int>>
 }

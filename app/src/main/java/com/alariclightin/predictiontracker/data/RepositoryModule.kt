@@ -10,4 +10,9 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class RepositoryModule {
     @Binds
     abstract fun providePredictions(impl: OfflinePredictionsRepository): PredictionsRepository
+
+    @Binds
+    abstract fun providePredictionStatistics(
+        impl: OfflinePredictionsRepository
+    ): PredictionStatisticsRepository
 }

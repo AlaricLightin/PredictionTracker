@@ -16,8 +16,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import java.time.OffsetDateTime
@@ -118,6 +118,7 @@ class PredictionListScreenTest {
             PredictionTrackerTheme {
                 PredictionListScreen(
                     navigateToPredictionEntry = { },
+                    navigateToStatisticsScreen = { },
                     viewModel = viewModel
                 )
             }

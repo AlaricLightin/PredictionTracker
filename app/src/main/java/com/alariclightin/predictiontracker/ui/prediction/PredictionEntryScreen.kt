@@ -15,22 +15,21 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.alariclightin.predictiontracker.PredictionTrackerTopAppBar
 import com.alariclightin.predictiontracker.R
+import com.alariclightin.predictiontracker.ui.navigation.DialogAppBar
 import com.alariclightin.predictiontracker.ui.navigation.NavigationDestination
+import com.alariclightin.predictiontracker.ui.navigation.NavigationDialogEvents
 import com.alariclightin.predictiontracker.ui.theme.PredictionTrackerTheme
 import kotlinx.coroutines.launch
 
 object PredictionEntryDestination: NavigationDestination {
     override val route: String = "prediction_entry"
-    override val titleRes: Int = R.string.prediction_entry_title
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PredictionEntryScreen(
-    navigateBack: () -> Unit,
-    onNavigateUp: () -> Unit,
+    navigationDialogEvents: NavigationDialogEvents,
     modifier: Modifier = Modifier,
     viewModel: PredictionEntryViewModel = hiltViewModel()
 ) {
@@ -38,10 +37,9 @@ fun PredictionEntryScreen(
 
     Scaffold(
         topBar = {
-            PredictionTrackerTopAppBar(
-                title = stringResource(PredictionEntryDestination.titleRes),
-                canNavigateBack = true,
-                navigateUp = onNavigateUp
+            DialogAppBar(
+                titleRes = R.string.prediction_entry_title,
+                navigateUp = navigationDialogEvents.onNavigateUp
             )
         }
     ) { innerPadding ->
@@ -51,7 +49,7 @@ fun PredictionEntryScreen(
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.save()
-                    navigateBack()
+                    navigationDialogEvents.onNavigateBack()
                 }
             },
             modifier = modifier.padding(innerPadding)

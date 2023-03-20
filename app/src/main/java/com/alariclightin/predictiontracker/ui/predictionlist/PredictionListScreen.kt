@@ -16,7 +16,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.alariclightin.predictiontracker.PredictionTrackerTopAppBar
 import com.alariclightin.predictiontracker.R
 import com.alariclightin.predictiontracker.data.Prediction
 import com.alariclightin.predictiontracker.ui.TestTagConsts
@@ -27,7 +26,6 @@ import java.time.OffsetDateTime
 
 object PredictionListDestination : NavigationDestination {
     override val route: String = "predictionList"
-    override val titleRes: Int = R.string.predictionList
 }
 
 data class PredictionEvents(
@@ -39,6 +37,7 @@ data class PredictionEvents(
 @Composable
 fun PredictionListScreen(
     navigateToPredictionEntry: () -> Unit,
+    navigateToStatisticsScreen: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: PredictionListViewModel = hiltViewModel()
 ) {
@@ -46,9 +45,22 @@ fun PredictionListScreen(
 
     Scaffold(
         topBar = {
-            PredictionTrackerTopAppBar(
-                title = stringResource(PredictionListDestination.titleRes),
-                canNavigateBack = false
+            TopAppBar(
+                title = {
+                    Text(
+                        text = stringResource(id = R.string.predictionList),
+                        modifier = modifier.testTag(TestTagConsts.TopAppBarText)
+                    )
+                },
+
+                actions = {
+                    MainMenu {
+                        DropdownMenuItem(
+                            onClick = navigateToStatisticsScreen,
+                            text = { Text(text = stringResource(id = R.string.statistics)) }
+                        )
+                    }
+                }
             )
         },
         floatingActionButton = {

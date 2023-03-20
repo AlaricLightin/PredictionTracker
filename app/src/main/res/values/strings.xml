@@ -22,4 +22,11 @@
     <string name="delete_question">Are you sure you want to delete this prediction?</string>
     <string name="resolve_date">Resolve Date (yyyy-mm-dd)</string>
     <string name="prediction_dates">On %s about %s</string>
+    <string name="statistics">Statistics</string>
+    <string name="menu">Menu</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="total_results">Total results: %d</string>
+    <string name="log_score">Logarithmic score: %.3f</string>
+    <string name="mean_log_score">Mean logarithmic score: %.3f</string>
+    <string name="brier_score">Brier score: %.3f</string>
 </resources>
