@@ -29,4 +29,7 @@
     <string name="log_score">Logarithmic score: %.3f</string>
     <string name="mean_log_score">Mean logarithmic score: %.3f</string>
     <string name="brier_score">Brier score: %.3f</string>
+    <string name="add_results">Add results</string>
+    <string name="waiting_for_resolve">Waiting for resolve</string>
+    <string name="past_predictions">Past predictions</string>
 </resources>

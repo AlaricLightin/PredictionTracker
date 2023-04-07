@@ -1,11 +1,16 @@
 package com.alariclightin.predictiontracker.data
 
 import kotlinx.coroutines.flow.Flow
+import java.time.OffsetDateTime
 
 interface PredictionsRepository {
-    fun getAllPredictionsStream(): Flow<List<Prediction>>
+    fun getExpiredPredictions(currentDateTime: OffsetDateTime): Flow<List<Prediction>>
 
-    fun getItemStream(id: Int): Flow<Prediction?>
+    fun getWaitingForResolvePredictions(currentDateTime: OffsetDateTime): Flow<List<Prediction>>
+
+    fun getResolvedPredictions(): Flow<List<Prediction>>
+
+    fun getItem(id: Int): Flow<Prediction?>
 
     suspend fun insert(prediction: Prediction)
 

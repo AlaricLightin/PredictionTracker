@@ -8,8 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.alariclightin.predictiontracker.ui.prediction.PredictionEntryDestination
 import com.alariclightin.predictiontracker.ui.prediction.PredictionEntryScreen
-import com.alariclightin.predictiontracker.ui.predictionlist.PredictionListDestination
-import com.alariclightin.predictiontracker.ui.predictionlist.PredictionListScreen
+import com.alariclightin.predictiontracker.ui.predictionlist.MainScreen
+import com.alariclightin.predictiontracker.ui.predictionlist.MainScreenDestination
 import com.alariclightin.predictiontracker.ui.statistics.StatisticsDestination
 import com.alariclightin.predictiontracker.ui.statistics.StatisticsScreen
 
@@ -20,11 +20,11 @@ fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = PredictionListDestination.route,
+        startDestination = MainScreenDestination.route,
         modifier = modifier
     ) {
-        composable(route = PredictionListDestination.route) {
-            PredictionListScreen(
+        composable(route = MainScreenDestination.route) {
+            MainScreen(
                 navigateToPredictionEntry = {
                     navController.navigate(PredictionEntryDestination.route)
                 },

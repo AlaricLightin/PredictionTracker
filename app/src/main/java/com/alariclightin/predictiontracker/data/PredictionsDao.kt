@@ -2,6 +2,7 @@ package com.alariclightin.predictiontracker.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import java.time.OffsetDateTime
 
 @Dao
 interface PredictionsDao {
@@ -17,8 +18,20 @@ interface PredictionsDao {
     @Query("SELECT * FROM predictions WHERE id = :id")
     fun getPrediction(id: Int): Flow<Prediction>
 
-    @Query("SELECT * FROM predictions")
-    fun getAllPredictions(): Flow<List<Prediction>>
+    @Query("SELECT * FROM predictions " +
+            "WHERE result IS NULL AND resolveDate < :currentDateTime " +
+            "ORDER BY resolveDate ASC")
+    fun getExpiredPredictions(currentDateTime: OffsetDateTime): Flow<List<Prediction>>
+
+    @Query("SELECT * FROM predictions " +
+            "WHERE result IS NULL AND resolveDate >= :currentDateTime " +
+            "ORDER BY resolveDate ASC")
+    fun getWaitingForResolvePredictions(currentDateTime: OffsetDateTime): Flow<List<Prediction>>
+
+    @Query("SELECT * FROM predictions " +
+            "WHERE result IS NOT NULL " +
+            "ORDER BY resolveDate DESC")
+    fun getResolvedPredictions(): Flow<List<Prediction>>
 
     @Query("""
         SELECT

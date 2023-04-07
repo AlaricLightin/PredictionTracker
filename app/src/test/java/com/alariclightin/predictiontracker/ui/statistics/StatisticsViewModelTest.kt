@@ -1,11 +1,9 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package com.alariclightin.predictiontracker.ui.statistics
 
 import com.alariclightin.predictiontracker.data.PredictionStatisticsRepository
+import com.alariclightin.predictiontracker.ui.MainDispatcherRule
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -16,10 +14,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.offset
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestWatcher
-import org.junit.runner.Description
 import org.junit.runner.RunWith
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(JUnitParamsRunner::class)
 internal class StatisticsViewModelTest {
     @get:Rule
@@ -68,17 +65,4 @@ internal class StatisticsViewModelTest {
             arrayOf(listOf(50, 50), -1.386, -0.693, 0.25, 2),
             arrayOf(listOf(10), -2.302, -2.302, 0.81, 1),
         )
-}
-
-// Reusable JUnit4 TestRule to override the Main dispatcher
-class MainDispatcherRule(
-    private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher(),
-) : TestWatcher() {
-    override fun starting(description: Description) {
-        Dispatchers.setMain(testDispatcher)
-    }
-
-    override fun finished(description: Description) {
-        Dispatchers.resetMain()
-    }
 }
