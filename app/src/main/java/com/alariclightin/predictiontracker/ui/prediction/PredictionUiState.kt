@@ -3,7 +3,6 @@ package com.alariclightin.predictiontracker.ui.prediction
 import com.alariclightin.predictiontracker.data.Prediction
 import com.alariclightin.predictiontracker.ui.theme.CardColorType
 import java.text.DecimalFormat
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.ZoneId
@@ -16,7 +15,10 @@ data class PredictionUiState(
     val id: Int = 0,
     val text: String = "",
     val probability: String = "",
+    // expected yyyy-MM-dd
     val resolveDate: String = "",
+    // expected HH:mm
+    val resolveTime: String = "00:00",
     val result: Boolean? = null,
     val actionEnabled: Boolean = false
 )
@@ -25,14 +27,16 @@ fun PredictionUiState.toPrediction(): Prediction = Prediction(
     id = id,
     text = text,
     probability = probability.toIntOrNull() ?: 50,
-    // FIXME add time to resolveDate
-    resolveDate = localDateToOffsetDateTime(resolveDate),
+    resolveDate = localDateToOffsetDateTime(resolveDate, resolveTime),
     predictionDate = OffsetDateTime.now(),
     result = result
 )
 
-private fun localDateToOffsetDateTime(localDateStr: String): OffsetDateTime {
-    val localDate = LocalDateTime.parse("${localDateStr}T00:00:00")
+private fun localDateToOffsetDateTime(
+    localDateStr: String,
+    localTimeStr: String
+): OffsetDateTime {
+    val localDate = LocalDateTime.parse("${localDateStr}T${localTimeStr}:00")
     return localDate.atOffset(
         ZoneId.systemDefault().rules.getOffset(localDate))
 }
@@ -46,8 +50,8 @@ fun PredictionUiState.isValid(): Boolean {
         return false
 
     try {
-        val localDate = LocalDate.parse(resolveDate, DateTimeFormatter.ISO_LOCAL_DATE)
-        if (localDate < LocalDate.now())
+        val localDate = localDateToOffsetDateTime(resolveDate, resolveTime)
+        if (localDate < OffsetDateTime.now())
             return false
     }
     catch (e: DateTimeParseException) {

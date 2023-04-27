@@ -125,6 +125,17 @@ fun PredictionInputForm(
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
             keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next
+            )
+        )
+
+        OutlinedTextField(
+            value = predictionUiState.resolveTime,
+            onValueChange = { onValueChange(predictionUiState.copy(resolveTime = it)) },
+            label = { Text(stringResource(R.string.resolve_time)) },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Done
             )
         )
