@@ -7,8 +7,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.filters.SdkSuppress
 import com.alariclightin.predictiontracker.R
 import com.alariclightin.predictiontracker.data.Prediction
+import com.alariclightin.predictiontracker.sharedtest.getTestPrediction
 import com.alariclightin.predictiontracker.ui.theme.PredictionTrackerTheme
-import com.alariclightin.predictiontracker.ui.utils.getTestPrediction
 import com.alariclightin.predictiontracker.ui.utils.onNodeWithStringId
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Rule
@@ -87,6 +87,7 @@ class MainScreenTest {
                 MainScreen(
                     navigateToPredictionEntry = { },
                     navigateToStatisticsScreen = { },
+                    navigateToOptionsScreen = { },
                     viewModel = viewModel
                 )
             }

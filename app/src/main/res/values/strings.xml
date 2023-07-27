@@ -33,4 +33,6 @@
     <string name="waiting_for_resolve">Waiting for resolve</string>
     <string name="past_predictions">Past predictions</string>
     <string name="resolve_time">Resolve Time (HH:mm)</string>
+    <string name="options">Options</string>
+    <string name="export_data">Export data</string>
 </resources>

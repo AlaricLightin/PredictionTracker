@@ -1,6 +1,7 @@
 package com.alariclightin.predictiontracker.ui.navigation
 
 import androidx.activity.compose.setContent
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -65,5 +66,27 @@ class PredictionListScreenNavigationTest {
             .assertNodeWithTestTagContainsTextEqualsToTextWithStringId(
                 TestTagConsts.TopAppBarText, R.string.statistics
             )
+    }
+
+    @Test
+    fun appNavHost_clickOptions_navigatesToOptionsScreen() {
+        composeTestRule.onNodeWithContentDescription(
+            composeTestRule.activity.getString(R.string.menu)
+        ).performClick()
+
+        composeTestRule.onNodeWithText(
+            composeTestRule.activity.getString(R.string.options)
+        ).performClick()
+
+        composeTestRule
+            .assertNodeWithTestTagContainsTextEqualsToTextWithStringId(
+                TestTagConsts.TopAppBarText, R.string.options
+            )
+
+        composeTestRule
+            .onNodeWithText(
+                composeTestRule.activity.getString(R.string.export_data)
+            )
+            .assertIsDisplayed()
     }
 }

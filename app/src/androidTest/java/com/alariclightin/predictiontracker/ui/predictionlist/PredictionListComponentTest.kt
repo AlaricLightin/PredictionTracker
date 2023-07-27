@@ -5,9 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.filters.SdkSuppress
+import com.alariclightin.predictiontracker.sharedtest.TEST_PREDICTION_TEXT
+import com.alariclightin.predictiontracker.sharedtest.getTestPrediction
 import com.alariclightin.predictiontracker.ui.TestTagConsts
-import com.alariclightin.predictiontracker.ui.utils.TEST_PREDICTION_TEXT
-import com.alariclightin.predictiontracker.ui.utils.getTestPrediction
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters
 import org.junit.Rule

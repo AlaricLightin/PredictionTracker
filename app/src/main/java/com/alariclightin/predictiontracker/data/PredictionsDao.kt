@@ -49,4 +49,10 @@ interface PredictionsDao {
         WHERE result IS NOT NULL
     """)
     fun getResultProbabilityList(): Flow<List<Int>>
+
+    @Query("""
+        SELECT * FROM predictions
+        ORDER BY resolveDate DESC
+    """)
+    fun getAllPredictions(): Flow<List<Prediction>>
 }

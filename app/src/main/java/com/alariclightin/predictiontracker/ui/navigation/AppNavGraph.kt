@@ -6,6 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.alariclightin.predictiontracker.ui.options.OptionsDestination
+import com.alariclightin.predictiontracker.ui.options.OptionsScreen
 import com.alariclightin.predictiontracker.ui.prediction.PredictionEntryDestination
 import com.alariclightin.predictiontracker.ui.prediction.PredictionEntryScreen
 import com.alariclightin.predictiontracker.ui.predictionlist.MainScreen
@@ -30,7 +32,10 @@ fun AppNavHost(
                 },
                 navigateToStatisticsScreen = {
                     navController.navigate(StatisticsDestination.route)
-                }
+                },
+                navigateToOptionsScreen = {
+                    navController.navigate(OptionsDestination.route)
+                },
             )
         }
         composable(route = PredictionEntryDestination.route) {
@@ -40,6 +45,11 @@ fun AppNavHost(
         }
         composable(route = StatisticsDestination.route) {
             StatisticsScreen(
+                navigationDialogEvents = navController.getDialogEvents(),
+            )
+        }
+        composable(route = OptionsDestination.route) {
+            OptionsScreen(
                 navigationDialogEvents = navController.getDialogEvents(),
             )
         }

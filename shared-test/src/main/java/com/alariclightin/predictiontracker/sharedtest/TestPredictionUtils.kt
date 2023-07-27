@@ -1,4 +1,4 @@
-package com.alariclightin.predictiontracker.ui.utils
+package com.alariclightin.predictiontracker.sharedtest
 
 import com.alariclightin.predictiontracker.data.Prediction
 import java.time.OffsetDateTime

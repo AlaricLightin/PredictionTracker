@@ -15,4 +15,9 @@ abstract class RepositoryModule {
     abstract fun providePredictionStatistics(
         impl: OfflinePredictionsRepository
     ): PredictionStatisticsRepository
+
+    @Binds
+    abstract fun providePredictionsExport(
+        impl: OfflinePredictionsRepository
+    ): PredictionsExportRepository
 }

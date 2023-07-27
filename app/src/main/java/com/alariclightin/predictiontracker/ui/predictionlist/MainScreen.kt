@@ -28,6 +28,7 @@ object MainScreenDestination : NavigationDestination {
 fun MainScreen(
     navigateToPredictionEntry: () -> Unit,
     navigateToStatisticsScreen: () -> Unit,
+    navigateToOptionsScreen: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: PredictionListViewModel = hiltViewModel()
 ) {
@@ -48,6 +49,11 @@ fun MainScreen(
                         DropdownMenuItem(
                             onClick = navigateToStatisticsScreen,
                             text = { Text(text = stringResource(id = R.string.statistics)) }
+                        )
+
+                        DropdownMenuItem(
+                            onClick = navigateToOptionsScreen,
+                            text = { Text(text = stringResource(id = R.string.options)) }
                         )
                     }
                 }

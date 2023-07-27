@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class OfflinePredictionsRepository @Inject constructor(
     private val predictionsDao: PredictionsDao
-) : PredictionsRepository, PredictionStatisticsRepository {
+) : PredictionsRepository, PredictionStatisticsRepository, PredictionsExportRepository {
 
     override fun getExpiredPredictions(currentDateTime: OffsetDateTime): Flow<List<Prediction>> =
         predictionsDao.getExpiredPredictions(currentDateTime)
@@ -28,4 +28,6 @@ class OfflinePredictionsRepository @Inject constructor(
 
     override fun getResultProbabilityList(): Flow<List<Int>> =
         predictionsDao.getResultProbabilityList()
+
+    override fun getAllPredictions(): Flow<List<Prediction>> = predictionsDao.getAllPredictions()
 }
