@@ -26,7 +26,6 @@ object PredictionEntryDestination: NavigationDestination {
     override val route: String = "prediction_entry"
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PredictionEntryScreen(
     navigationDialogEvents: NavigationDialogEvents,
@@ -84,7 +83,6 @@ fun PredictionEntryBody(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PredictionInputForm(
     predictionUiState: PredictionUiState,

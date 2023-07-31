@@ -38,7 +38,6 @@ object OptionsDestination : NavigationDestination {
     override val route: String = "options"
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OptionsScreen(
     navigationDialogEvents: NavigationDialogEvents,
