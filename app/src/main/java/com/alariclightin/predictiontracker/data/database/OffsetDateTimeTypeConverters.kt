@@ -1,4 +1,4 @@
-package com.alariclightin.predictiontracker.data
+package com.alariclightin.predictiontracker.data.database
 
 import androidx.room.TypeConverter
 import java.time.OffsetDateTime

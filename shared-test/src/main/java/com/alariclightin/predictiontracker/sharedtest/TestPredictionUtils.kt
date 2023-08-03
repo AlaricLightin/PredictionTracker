@@ -1,6 +1,6 @@
 package com.alariclightin.predictiontracker.sharedtest
 
-import com.alariclightin.predictiontracker.data.Prediction
+import com.alariclightin.predictiontracker.data.models.Prediction
 import java.time.OffsetDateTime
 
 const val TEST_PREDICTION_TEXT = "SomeText"

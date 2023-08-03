@@ -1,4 +1,4 @@
-package com.alariclightin.predictiontracker.data
+package com.alariclightin.predictiontracker.data.database
 
 import android.content.Context
 import androidx.room.Room

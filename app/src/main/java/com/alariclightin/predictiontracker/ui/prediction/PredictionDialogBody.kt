@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.alariclightin.predictiontracker.R
-import com.alariclightin.predictiontracker.data.Prediction
+import com.alariclightin.predictiontracker.data.models.Prediction
 
 @Composable
 fun PredictionDialogBody(

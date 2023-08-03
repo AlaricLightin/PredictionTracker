@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alariclightin.predictiontracker.R
-import com.alariclightin.predictiontracker.data.Prediction
+import com.alariclightin.predictiontracker.data.models.Prediction
 import com.alariclightin.predictiontracker.ui.TestTagConsts
 import com.alariclightin.predictiontracker.ui.prediction.*
 import com.alariclightin.predictiontracker.ui.theme.cardBackgroundColors

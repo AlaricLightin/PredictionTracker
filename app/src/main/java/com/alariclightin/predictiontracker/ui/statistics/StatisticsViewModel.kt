@@ -2,7 +2,7 @@ package com.alariclightin.predictiontracker.ui.statistics
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alariclightin.predictiontracker.data.PredictionStatisticsRepository
+import com.alariclightin.predictiontracker.data.database.PredictionStatisticsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

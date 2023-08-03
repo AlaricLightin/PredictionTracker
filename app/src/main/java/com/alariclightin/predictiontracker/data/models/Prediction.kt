@@ -1,5 +1,5 @@
 @file:UseSerializers(KOffsetDateTimeSerializer::class)
-package com.alariclightin.predictiontracker.data
+package com.alariclightin.predictiontracker.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,8 +1,9 @@
-package com.alariclightin.predictiontracker.data
+package com.alariclightin.predictiontracker.data.database
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import com.alariclightin.predictiontracker.data.models.Prediction
 import com.alariclightin.predictiontracker.sharedtest.getTestPrediction
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first

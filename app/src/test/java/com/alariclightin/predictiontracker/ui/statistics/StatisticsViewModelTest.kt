@@ -1,6 +1,6 @@
 package com.alariclightin.predictiontracker.ui.statistics
 
-import com.alariclightin.predictiontracker.data.PredictionStatisticsRepository
+import com.alariclightin.predictiontracker.data.database.PredictionStatisticsRepository
 import com.alariclightin.predictiontracker.ui.MainDispatcherRule
 import junitparams.JUnitParamsRunner
 import junitparams.Parameters

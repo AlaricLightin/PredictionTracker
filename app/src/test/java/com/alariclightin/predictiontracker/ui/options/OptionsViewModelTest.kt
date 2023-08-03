@@ -1,7 +1,7 @@
 package com.alariclightin.predictiontracker.ui.options
 
-import com.alariclightin.predictiontracker.data.Prediction
-import com.alariclightin.predictiontracker.data.PredictionsExportRepository
+import com.alariclightin.predictiontracker.data.models.Prediction
+import com.alariclightin.predictiontracker.data.database.PredictionsExportRepository
 import com.alariclightin.predictiontracker.sharedtest.TEST_PREDICTION_TEXT
 import com.alariclightin.predictiontracker.sharedtest.getTestPrediction
 import com.alariclightin.predictiontracker.ui.MainDispatcherRule

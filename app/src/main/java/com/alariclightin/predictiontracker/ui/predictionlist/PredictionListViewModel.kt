@@ -2,8 +2,8 @@ package com.alariclightin.predictiontracker.ui.predictionlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alariclightin.predictiontracker.data.Prediction
-import com.alariclightin.predictiontracker.data.PredictionsRepository
+import com.alariclightin.predictiontracker.data.models.Prediction
+import com.alariclightin.predictiontracker.data.database.PredictionsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

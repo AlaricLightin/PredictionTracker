@@ -1,6 +1,7 @@
-package com.alariclightin.predictiontracker.data
+package com.alariclightin.predictiontracker.data.database
 
 import androidx.room.*
+import com.alariclightin.predictiontracker.data.models.Prediction
 import kotlinx.coroutines.flow.Flow
 import java.time.OffsetDateTime
 

@@ -1,6 +1,6 @@
 package com.alariclightin.predictiontracker.ui.prediction
 
-import com.alariclightin.predictiontracker.data.Prediction
+import com.alariclightin.predictiontracker.data.models.Prediction
 import com.alariclightin.predictiontracker.ui.theme.CardColorType
 import java.text.DecimalFormat
 import java.time.LocalDateTime

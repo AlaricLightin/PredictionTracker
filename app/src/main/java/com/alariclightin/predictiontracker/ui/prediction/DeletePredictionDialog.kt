@@ -6,7 +6,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.alariclightin.predictiontracker.R
-import com.alariclightin.predictiontracker.data.Prediction
+import com.alariclightin.predictiontracker.data.models.Prediction
 
 @Composable
 fun DeletePredictionDialog(

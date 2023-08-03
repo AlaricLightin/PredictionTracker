@@ -6,7 +6,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.filters.SdkSuppress
 import com.alariclightin.predictiontracker.R
-import com.alariclightin.predictiontracker.data.Prediction
+import com.alariclightin.predictiontracker.data.models.Prediction
 import com.alariclightin.predictiontracker.sharedtest.getTestPrediction
 import com.alariclightin.predictiontracker.ui.theme.PredictionTrackerTheme
 import com.alariclightin.predictiontracker.ui.utils.onNodeWithStringId

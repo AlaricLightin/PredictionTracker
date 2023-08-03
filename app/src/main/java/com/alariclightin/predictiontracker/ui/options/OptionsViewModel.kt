@@ -2,7 +2,7 @@ package com.alariclightin.predictiontracker.ui.options
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alariclightin.predictiontracker.data.PredictionsExportRepository
+import com.alariclightin.predictiontracker.data.database.PredictionsExportRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

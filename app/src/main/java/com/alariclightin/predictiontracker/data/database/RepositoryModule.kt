@@ -1,4 +1,4 @@
-package com.alariclightin.predictiontracker.data
+package com.alariclightin.predictiontracker.data.database
 
 import dagger.Binds
 import dagger.Module
