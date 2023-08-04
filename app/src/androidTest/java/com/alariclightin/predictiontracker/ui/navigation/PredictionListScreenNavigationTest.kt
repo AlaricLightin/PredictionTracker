@@ -11,6 +11,7 @@ import com.alariclightin.predictiontracker.PredictionTrackerApp
 import com.alariclightin.predictiontracker.R
 import com.alariclightin.predictiontracker.ui.TestTagConsts
 import com.alariclightin.predictiontracker.ui.utils.assertNodeWithTestTagContainsTextEqualsToTextWithStringId
+import com.alariclightin.predictiontracker.workManagerInitialize
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -27,6 +28,8 @@ class PredictionListScreenNavigationTest {
 
     @Before
     fun setupAppNavHost() {
+        workManagerInitialize()
+
         hiltTestRule.inject()
         composeTestRule.activity.setContent {
             PredictionTrackerApp()
