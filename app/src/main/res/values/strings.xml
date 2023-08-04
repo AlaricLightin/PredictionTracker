@@ -12,7 +12,7 @@
     <string name="incorrect_result">Result: incorrect</string>
     <string name="resolve_prediction">Resolve</string>
     <string name="delete">Delete</string>
-    <string name="addPredictionResult">Add prediction result</string>
+    <string name="add_prediction_result">Add prediction result</string>
     <string name="yourPrediction">Your prediction:</string>
     <string name="wasPredictionCorrect">Was this prediction correct?</string>
     <string name="yes">Yes</string>
@@ -35,4 +35,5 @@
     <string name="resolve_time">Resolve Time (HH:mm)</string>
     <string name="options">Options</string>
     <string name="export_data">Export data</string>
+    <string name="resolve_prediction_notification">Resolve prediction notification</string>
 </resources>

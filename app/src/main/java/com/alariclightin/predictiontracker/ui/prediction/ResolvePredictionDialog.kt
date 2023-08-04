@@ -23,7 +23,7 @@ fun ResolvePredictionDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(stringResource(R.string.addPredictionResult))
+            Text(stringResource(R.string.add_prediction_result))
         },
         text = {
             PredictionDialogBody(
