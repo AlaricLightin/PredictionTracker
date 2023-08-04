@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 @RunWith(JUnitParamsRunner::class)
 internal class PredictionUiStateTest {
 
+    @Suppress("JUnitMalformedDeclaration")
     @Test
     @Parameters(
         value = [

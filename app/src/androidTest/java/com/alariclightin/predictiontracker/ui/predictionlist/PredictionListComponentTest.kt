@@ -52,6 +52,7 @@ class PredictionListComponentTest {
             "10, false, +8.5, Result: incorrect",
         ]
     )
+    @Suppress("JUnitMalformedDeclaration")
     fun verifyPredictionCardProperties(
         probability: Int,
         predictionResult: Boolean,

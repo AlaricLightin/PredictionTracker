@@ -7,7 +7,7 @@ import androidx.work.testing.SynchronousExecutor
 import androidx.work.testing.WorkManagerTestInitHelper
 
 fun workManagerInitialize() {
-    val context = InstrumentationRegistry.getInstrumentation().getTargetContext()
+    val context = InstrumentationRegistry.getInstrumentation().targetContext
     val config = Configuration.Builder()
         .setMinimumLoggingLevel(Log.DEBUG)
         .setExecutor(SynchronousExecutor())

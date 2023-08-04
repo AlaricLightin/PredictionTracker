@@ -12,6 +12,7 @@ import java.time.OffsetDateTime
 @RunWith(JUnitParamsRunner::class)
 class PredictionPropertiesTest {
 
+    @Suppress("JUnitMalformedDeclaration")
     @Test
     @Parameters(value = [
         "50, true, Normal",

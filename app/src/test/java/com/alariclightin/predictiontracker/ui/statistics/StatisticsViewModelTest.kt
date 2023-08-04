@@ -22,6 +22,7 @@ internal class StatisticsViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
+    @Suppress("JUnitMalformedDeclaration")
     @Test
     @Parameters(method = "parametersForShouldCalculateUiState")
     fun shouldCalculateUiState(
