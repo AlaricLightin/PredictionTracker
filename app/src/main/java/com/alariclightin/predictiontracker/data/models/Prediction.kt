@@ -15,7 +15,7 @@ data class Prediction(
     val id: Int = 0,
     val text: String,
     val probability: Int,
-    val predictionDate: OffsetDateTime,
-    val resolveDate: OffsetDateTime,
+    val predictionDateTime: OffsetDateTime,
+    val resolveDateTime: OffsetDateTime,
     val result: Boolean? = null
 )

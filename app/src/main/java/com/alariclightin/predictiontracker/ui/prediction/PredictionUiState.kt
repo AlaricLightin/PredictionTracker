@@ -27,8 +27,8 @@ fun PredictionUiState.toPrediction(): Prediction = Prediction(
     id = id,
     text = text,
     probability = probability.toIntOrNull() ?: 50,
-    resolveDate = localDateToOffsetDateTime(resolveDate, resolveTime),
-    predictionDate = OffsetDateTime.now(),
+    resolveDateTime = localDateToOffsetDateTime(resolveDate, resolveTime),
+    predictionDateTime = OffsetDateTime.now(),
     result = result
 )
 
@@ -67,8 +67,8 @@ fun Prediction.datesString(formatString: String): String {
     val dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
     return String.format(
         formatString,
-        predictionDate.format(dateTimeFormatter),
-        resolveDate.format(dateTimeFormatter)
+        predictionDateTime.format(dateTimeFormatter),
+        resolveDateTime.format(dateTimeFormatter)
     )
 }
 
@@ -90,7 +90,7 @@ fun Prediction.getCardColorType(): CardColorType {
             else -> CardColorType.RightAnswer
         }
     }
-    else if (result == null && resolveDate < OffsetDateTime.now()) {
+    else if (result == null && resolveDateTime < OffsetDateTime.now()) {
         CardColorType.Expired
     }
     else {

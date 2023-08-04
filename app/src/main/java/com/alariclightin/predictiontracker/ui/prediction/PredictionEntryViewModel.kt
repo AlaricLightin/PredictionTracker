@@ -25,7 +25,7 @@ class PredictionEntryViewModel @Inject constructor(
         if (predictionUiState.isValid()) {
             val prediction = predictionUiState.toPrediction()
             predictionsRepository.insert(prediction)
-            resolveNotificationRepository.setNotification(prediction.resolveDate)
+            resolveNotificationRepository.setNotification(prediction.resolveDateTime)
         }
     }
 }

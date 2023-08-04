@@ -204,8 +204,8 @@ private fun PredictionListComponentPreview() {
                 id = 1,
                 text = "Prediction 1",
                 probability = 60,
-                predictionDate = parseIsoDate("2021-01-01"),
-                resolveDate = parseIsoDate("2021-01-31"),
+                predictionDateTime = parseIsoDate("2021-01-01"),
+                resolveDateTime = parseIsoDate("2021-01-31"),
                 result = true
             ),
 
@@ -213,8 +213,8 @@ private fun PredictionListComponentPreview() {
                 id = 2,
                 text = "Prediction 2",
                 probability = 70,
-                predictionDate = parseIsoDate("2021-01-01"),
-                resolveDate = parseIsoDate("2022-01-31"),
+                predictionDateTime = parseIsoDate("2021-01-01"),
+                resolveDateTime = parseIsoDate("2022-01-31"),
                 result = false
             )
         ),

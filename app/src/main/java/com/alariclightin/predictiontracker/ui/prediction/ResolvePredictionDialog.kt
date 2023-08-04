@@ -59,8 +59,8 @@ private fun PredictionResolveDialogPreview() {
         ResolvePredictionDialog(
             prediction = Prediction(
                 1, "Will human settlement be on Mars in 2030?", 60,
-                predictionDate = OffsetDateTime.parse("2022-01-01T00:00:00+00"),
-                resolveDate = OffsetDateTime.parse("2031-01-01T00:00:00+00")
+                predictionDateTime = OffsetDateTime.parse("2022-01-01T00:00:00+00"),
+                resolveDateTime = OffsetDateTime.parse("2031-01-01T00:00:00+00")
             ),
             onResolve = { },
             onDismiss = { }

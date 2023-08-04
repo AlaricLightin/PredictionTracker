@@ -14,7 +14,7 @@ fun getTestPrediction(
     result: Boolean? = null
 ) = Prediction(
     id, text, probability,
-    predictionDate = predictionDate,
-    resolveDate = resolveDate,
+    predictionDateTime = predictionDate,
+    resolveDateTime = resolveDate,
     result = result
 )

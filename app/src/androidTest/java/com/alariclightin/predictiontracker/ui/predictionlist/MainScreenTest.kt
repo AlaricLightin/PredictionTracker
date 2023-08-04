@@ -46,8 +46,8 @@ class MainScreenTest {
                     text = "Prediction 1",
                     probability = 50,
                     result = true,
-                    predictionDate = OffsetDateTime.now().minusDays(5),
-                    resolveDate = OffsetDateTime.now().minusDays(3),
+                    predictionDateTime = OffsetDateTime.now().minusDays(5),
+                    resolveDateTime = OffsetDateTime.now().minusDays(3),
                 )
             ),
             waitingForResolveList = listOf(

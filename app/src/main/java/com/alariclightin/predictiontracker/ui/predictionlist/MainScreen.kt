@@ -136,30 +136,30 @@ private fun MainScreenBodyPreview() {
                 timeExpiredList = listOf(
                     Prediction(
                         1, "I will finish this app by March 2023", 10,
-                        predictionDate = parseIsoDate("2022-01-01"),
-                        resolveDate = parseIsoDate("2023-03-01")
+                        predictionDateTime = parseIsoDate("2022-01-01"),
+                        resolveDateTime = parseIsoDate("2023-03-01")
                     )
                 ),
 
                 waitingForResolveList = listOf(
                     Prediction(
                         2, "Human settlement will be on Mars by 2030", 60,
-                        predictionDate = parseIsoDate("2021-01-01"),
-                        resolveDate = parseIsoDate("2031-01-01")
+                        predictionDateTime = parseIsoDate("2021-01-01"),
+                        resolveDateTime = parseIsoDate("2031-01-01")
                     )
                 ),
 
                 resolvedList = listOf(
                     Prediction(
                         3, "Trump will be elected as President of the US in 2016", 30,
-                        predictionDate = parseIsoDate("2015-06-01"),
-                        resolveDate = parseIsoDate("2016-02-01"),
+                        predictionDateTime = parseIsoDate("2015-06-01"),
+                        resolveDateTime = parseIsoDate("2016-02-01"),
                         result = true
                     ),
                     Prediction(
                         4, "GPT-4 will be released in 2023", 70,
-                        predictionDate = parseIsoDate("2019-06-01"),
-                        resolveDate = parseIsoDate("2024-01-01"),
+                        predictionDateTime = parseIsoDate("2019-06-01"),
+                        resolveDateTime = parseIsoDate("2024-01-01"),
                         result = true
                     )
                 )

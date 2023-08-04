@@ -29,8 +29,8 @@ class PredictionPropertiesTest {
         val prediction = Prediction(
             text = "Some prediction text",
             probability = probability,
-            predictionDate = OffsetDateTime.now().minusDays(10),
-            resolveDate = OffsetDateTime.now().minusDays(1),
+            predictionDateTime = OffsetDateTime.now().minusDays(10),
+            resolveDateTime = OffsetDateTime.now().minusDays(1),
             result = predictionResult
         )
 
@@ -43,8 +43,8 @@ class PredictionPropertiesTest {
         val prediction = Prediction(
             text = "Some prediction text",
             probability = 70,
-            predictionDate = OffsetDateTime.now().minusDays(10),
-            resolveDate = OffsetDateTime.now().minusDays(1),
+            predictionDateTime = OffsetDateTime.now().minusDays(10),
+            resolveDateTime = OffsetDateTime.now().minusDays(1),
             result = null
         )
 
@@ -57,8 +57,8 @@ class PredictionPropertiesTest {
         val prediction = Prediction(
             text = "Some prediction text",
             probability = 70,
-            predictionDate = OffsetDateTime.now().minusDays(10),
-            resolveDate = OffsetDateTime.now().plusDays(1),
+            predictionDateTime = OffsetDateTime.now().minusDays(10),
+            resolveDateTime = OffsetDateTime.now().plusDays(1),
             result = null
         )
 
