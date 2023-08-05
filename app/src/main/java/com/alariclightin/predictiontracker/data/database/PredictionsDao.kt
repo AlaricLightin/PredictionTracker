@@ -22,8 +22,8 @@ interface PredictionsDao {
     @Query(
         """
         SELECT * FROM predictions 
-        WHERE result IS NULL AND resolveDateTime < :currentDateTime 
-        ORDER BY resolveDateTime ASC
+        WHERE result IS NULL AND datetime(resolveDateTime) < datetime(:currentDateTime) 
+        ORDER BY datetime(resolveDateTime) ASC
         """
     )
     fun getExpiredPredictions(currentDateTime: OffsetDateTime): Flow<List<Prediction>>
@@ -31,8 +31,8 @@ interface PredictionsDao {
     @Query(
         """
         SELECT * FROM predictions 
-        WHERE result IS NULL AND resolveDateTime >= :currentDateTime 
-        ORDER BY resolveDateTime ASC
+        WHERE result IS NULL AND datetime(resolveDateTime) >= datetime(:currentDateTime) 
+        ORDER BY datetime(resolveDateTime) ASC
         """
     )
     fun getWaitingForResolvePredictions(currentDateTime: OffsetDateTime): Flow<List<Prediction>>
@@ -41,7 +41,7 @@ interface PredictionsDao {
         """
         SELECT * FROM predictions 
         WHERE result IS NOT NULL 
-        ORDER BY resolveDateTime DESC
+        ORDER BY datetime(resolveDateTime) DESC
         """
     )
     fun getResolvedPredictions(): Flow<List<Prediction>>
@@ -60,7 +60,7 @@ interface PredictionsDao {
     @Query(
         """
         SELECT * FROM predictions
-        ORDER BY resolveDateTime DESC
+        ORDER BY datetime(resolveDateTime) DESC
     """
     )
     fun getAllPredictions(): Flow<List<Prediction>>

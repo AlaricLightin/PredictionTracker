@@ -5,15 +5,20 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.alariclightin.predictiontracker.data.models.Prediction
 import com.alariclightin.predictiontracker.sharedtest.getTestPrediction
+import junitparams.JUnitParamsRunner
+import junitparams.Parameters
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
 @OptIn(ExperimentalCoroutinesApi::class)
+@RunWith(JUnitParamsRunner::class)
 class PredictionsDaoTest {
 
     private lateinit var db: AppDatabase
@@ -30,52 +35,215 @@ class PredictionsDaoTest {
         dao = db.predictionsDao()
     }
 
+    @Suppress("JUnitMalformedDeclaration")
     @Test
-    fun daoGetResultProbabilityList() = runTest {
-        addPredictions(
+    @Parameters(method = "parametersForDaoResultProbabilityList")
+    fun daoGetResultProbabilityList(
+        predictionList: List<Prediction>,
+        expectedResultList: List<Int>
+    ) = runTest {
+        addPredictions(predictionList)
+        val result = dao.getResultProbabilityList().first()
+        assertEquals(expectedResultList, result)
+    }
+
+    @Suppress("unused")
+    private fun parametersForDaoResultProbabilityList(): List<Array<Any>> = listOf(
+        arrayOf(
             listOf(
                 getTestPrediction(probability = 30, result = true),
                 getTestPrediction(probability = 60, result = null),
                 getTestPrediction(probability = 40, result = false)
-            )
-        )
-        val result = dao.getResultProbabilityList().first()
-        assertEquals(listOf(30, 60), result)
-    }
-
-    @Test
-    fun daoGetResultProbabilityListWithNoResults() = runTest {
-        addPredictions(
+            ),
+            listOf(30, 60)
+        ),
+        arrayOf(
             listOf(
                 getTestPrediction(probability = 30, result = null),
                 getTestPrediction(probability = 60, result = null),
                 getTestPrediction(probability = 40, result = null)
-            )
+            ),
+            emptyList<Int>()
         )
-        val result = dao.getResultProbabilityList().first()
-        assertEquals(emptyList<Int>(), result)
+    )
+
+    @Suppress("JUnitMalformedDeclaration")
+    @Test
+    @Parameters(method = "parametersForDaoGetExpiredPredictionList")
+    fun daoGetExpiredPredictionList(
+        predictionList: List<Prediction>,
+        currentDateTime: OffsetDateTime,
+        expectedResultList: List<Int>
+    ) = runTest {
+        addPredictions(predictionList)
+        val result = dao.getExpiredPredictions(currentDateTime).first()
+        assertEquals(expectedResultList, result.map { it.id })
     }
 
+    @Suppress("unused")
+    private fun parametersForDaoGetExpiredPredictionList(): List<Array<Any>> = listOf(
+        arrayOf(
+            getListForGetPredictionTesting(),
+            OffsetDateTime.now(),
+            listOf(5, 2)
+        ),
+        arrayOf(
+            listOf(
+                getTestPrediction(
+                    id = 1,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 12, 0, 0, 0,
+                        ZoneOffset.UTC
+                    )
+                ),
+                getTestPrediction(
+                    id = 2,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 14, 0, 0, 0,
+                        ZoneOffset.of("+3")
+                    )
+                )
+            ),
+
+            OffsetDateTime.of(
+                2021, 1, 1, 13, 0, 0, 0,
+                ZoneOffset.UTC
+            ),
+
+            listOf(2, 1)
+        )
+    )
+
+    @Suppress("JUnitMalformedDeclaration")
     @Test
-    fun daoGetExpiredPredictionList() = runTest {
-        addPredictions(getListForGetPredictionTesting())
-        val result = dao.getExpiredPredictions(OffsetDateTime.now()).first()
-        assertEquals(listOf(5, 2), result.map { it.id })
+    @Parameters(method = "parametersForDaoGetWaitingForResolvePredictions")
+    fun getWaitingForResolveList(
+        predictionList: List<Prediction>,
+        currentDateTime: OffsetDateTime,
+        expectedResultList: List<Int>
+    ) = runTest {
+        addPredictions(predictionList)
+        val result = dao.getWaitingForResolvePredictions(currentDateTime).first()
+        assertEquals(expectedResultList, result.map { it.id })
     }
 
-    @Test
-    fun getWaitingForResolveList() = runTest {
-        addPredictions(getListForGetPredictionTesting())
-        val result = dao.getWaitingForResolvePredictions(OffsetDateTime.now()).first()
-        assertEquals(listOf(4), result.map { it.id })
-    }
+    @Suppress("unused")
+    private fun parametersForDaoGetWaitingForResolvePredictions(): List<Array<Any>> = listOf(
+        arrayOf(
+            getListForGetPredictionTesting(),
+            OffsetDateTime.now(),
+            listOf(4)
+        ),
+        arrayOf(
+            listOf(
+                getTestPrediction(
+                    id = 1,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 12, 0, 0, 0,
+                        ZoneOffset.UTC
+                    )
+                ),
+                getTestPrediction(
+                    id = 2,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 14, 0, 0, 0,
+                        ZoneOffset.of("+3")
+                    )
+                )
+            ),
 
+            OffsetDateTime.of(
+                2021, 1, 1, 13, 0, 0, 0,
+                ZoneOffset.UTC
+            ),
+
+            emptyList<Int>()
+        ),
+
+        arrayOf(
+            listOf(
+                getTestPrediction(
+                    id = 1,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 12, 0, 0, 0,
+                        ZoneOffset.UTC
+                    )
+                ),
+                getTestPrediction(
+                    id = 2,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 14, 0, 0, 0,
+                        ZoneOffset.of("+3")
+                    )
+                ),
+                getTestPrediction(
+                    id = 3,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 7, 0, 0, 0,
+                        ZoneOffset.of("+3")
+                    )
+                )
+            ),
+
+            OffsetDateTime.of(
+                2021, 1, 1, 8, 0, 0, 0,
+                ZoneOffset.UTC
+            ),
+
+            listOf(2, 1)
+        )
+    )
+
+    @Suppress("JUnitMalformedDeclaration")
     @Test
-    fun getResolvedList() = runTest {
-        addPredictions(getListForGetPredictionTesting())
+    @Parameters(method = "parametersForDaoGetResolvedPredictions")
+    fun getResolvedList(
+        predictionList: List<Prediction>,
+        expectedResultList: List<Int>
+    ) = runTest {
+        addPredictions(predictionList)
         val result = dao.getResolvedPredictions().first()
-        assertEquals(listOf(3, 1), result.map { it.id })
+        assertEquals(expectedResultList, result.map { it.id })
     }
+
+    @Suppress("unused")
+    private fun parametersForDaoGetResolvedPredictions(): List<Array<Any>> = listOf(
+        arrayOf(
+            getListForGetPredictionTesting(),
+            listOf(3, 1)
+        ),
+
+        arrayOf(
+            listOf(
+                getTestPrediction(
+                    id = 1,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 12, 0, 0, 0,
+                        ZoneOffset.UTC
+                    ),
+                    result = true
+                ),
+                getTestPrediction(
+                    id = 2,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 14, 0, 0, 0,
+                        ZoneOffset.of("+3")
+                    ),
+                    result = false
+                ),
+                getTestPrediction(
+                    id = 3,
+                    resolveDate = OffsetDateTime.of(
+                        2021, 1, 1, 7, 0, 0, 0,
+                        ZoneOffset.of("+3")
+                    ),
+                    result = true
+                )
+            ),
+
+            listOf(1, 2, 3)
+        )
+    )
 
     private fun getListForGetPredictionTesting() =
         listOf(
