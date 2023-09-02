@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
 import java.time.OffsetDateTime
 
 @RunWith(JUnitParamsRunner::class)
-class PredictionPropertiesTest {
+internal class PredictionPropertiesTest {
 
     @Suppress("JUnitMalformedDeclaration")
     @Test
